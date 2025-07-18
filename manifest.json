@@ -15,8 +15,7 @@
   },
 
   "browser_action": {
-    "default_title": "Pin/Unpin Tab",
-    "default_popup": ""
+    "default_title": "Pin/Unpin Tab"
   },
   
   "commands": {
