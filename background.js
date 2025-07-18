@@ -4,6 +4,10 @@ browser.commands.onCommand.addListener((command) => {
   }
 });
 
+browser.browserAction.onClicked.addListener(() => {
+  toggleTabPin();
+});
+
 async function toggleTabPin() {
   try {
     const [activeTab] = await browser.tabs.query({ active: true, currentWindow: true });
