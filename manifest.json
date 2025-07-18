@@ -1,0 +1,25 @@
+{
+  "manifest_version": 2,
+  "name": "Tab Pin/Unpin with Ctrl+X",
+  "version": "1.0",
+  "description": "Pin or unpin the current tab using Ctrl+X keyboard shortcut",
+  
+  "permissions": [
+    "tabs",
+    "activeTab"
+  ],
+  
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
+  
+  "commands": {
+    "toggle-pin": {
+      "suggested_key": {
+        "default": "Ctrl+X"
+      },
+      "description": "Pin or unpin the current tab"
+    }
+  }
+}
