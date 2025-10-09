@@ -22,9 +22,11 @@ Since this extension is not yet available in the Firefox Add-ons store, you'll n
 ## Usage
 
 ### Keyboard Shortcut
+
 Press `Alt+X` to pin or unpin the current tab.
 
 ### Toolbar Button
+
 Click the "Pin/Unpin Tab" button in the Firefox toolbar to toggle the pin state of the current tab.
 
 ## License
