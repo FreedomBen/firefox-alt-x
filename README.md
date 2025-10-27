@@ -4,30 +4,36 @@ A simple Firefox extension that allows you to quickly pin or unpin tabs using a 
 
 ## Features
 
-- Pin/unpin the current tab with the Alt+X keyboard shortcut
-- Click the toolbar button to pin/unpin the current tab
-- Lightweight and fast
+- Pin or unpin the active tab with the `Alt+X` keyboard shortcut
+- Click the toolbar button to toggle the pin state
+- Ships as a Manifest V3 WebExtension with a lightweight background service worker
 
 ## Installation
 
-Since this extension is not yet available in the Firefox Add-ons store, you'll need to install it manually as a temporary add-on:
+The add-on is not in the Firefox Add-ons store yet, so load it manually:
 
-1. Download or clone this repository
-2. Open Firefox and navigate to `about:debugging`
-3. Click "This Firefox" in the left sidebar
-4. Click "Load Temporary Add-on..."
-5. Navigate to the extension folder and select the `manifest.json` file
-6. The extension will be installed temporarily (until you restart Firefox)
+1. Download or clone this repository.
+2. Open Firefox and navigate to `about:debugging`.
+3. Select **This Firefox** in the sidebar.
+4. Click **Load Temporary Add-on...**.
+5. Pick the `manifest.json` file inside this project.
+6. Firefox installs the extension until the browser restarts.
+
+## Development
+
+```bash
+npm install
+npm start     # launches Firefox via web-ext with live reload
+npm run lint  # runs web-ext lint for manifest and code checks
+npm run build # creates a signed-ready ZIP bundle in ./build/
+```
+
+The `web-ext` CLI is listed as a dev dependency; you can also invoke it with `npx web-ext ...` if you prefer not to install globally.
 
 ## Usage
 
-### Keyboard Shortcut
-
-Press `Alt+X` to pin or unpin the current tab.
-
-### Toolbar Button
-
-Click the "Pin/Unpin Tab" button in the Firefox toolbar to toggle the pin state of the current tab.
+- Keyboard shortcut: press `Alt+X` while focused on any tab to toggle its pin status.
+- Toolbar button: click the pin icon that appears in the Firefox toolbar.
 
 ## License
 

@@ -4,7 +4,7 @@ browser.commands.onCommand.addListener((command) => {
   }
 });
 
-browser.browserAction.onClicked.addListener(() => {
+browser.action.onClicked.addListener(() => {
   toggleTabPin();
 });
 

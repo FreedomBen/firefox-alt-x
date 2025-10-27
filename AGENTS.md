@@ -1,26 +1,29 @@
 # Repository Guidelines
 
 ## Project Structure & Module Organization
-- `manifest.json`: WebExtension manifest; adjust permissions or keyboard shortcuts here.
-- `background.js`: Core logic that toggles pin state via command and browser action listeners.
-- `README.md`: Installation steps for loading the temporary add-on; keep user-facing docs in sync with code changes.
-- No build tooling or nested modules—keep new scripts in the root or add a `src/` folder if the codebase grows, and update the manifest `background.scripts` list accordingly.
+- `manifest.json`: Manifest V3 definition; update permissions, keyboard shortcuts, and service worker entry here.
+- `background.js`: Service worker that handles the `toggle-pin` command and toolbar clicks via asynchronous tab APIs.
+- `icons/`: Houses the 48px and 96px assets referenced in the manifest; keep additional sizes in this folder if you add store listings.
+- `README.md`: Contributor- and user-facing guide; mirror any shortcut, install, or build changes here.
+- Keep new logic modular: stage helpers under `src/`, import them from the service worker, and only list assets in `web_accessible_resources` when they must be exposed.
 
 ## Build, Test, and Development Commands
-- `zip -r build/tab-pin.zip manifest.json background.js icons/`: Package the extension for manual distribution; create `build/` if absent.
-- `web-ext run --firefox=/path/to/firefox`: Optional live-reload development with Mozilla’s tooling; install `web-ext` globally (`npm install -g web-ext`) if you need this workflow.
-- Manual load: visit `about:debugging` → `This Firefox` → `Load Temporary Add-on...` and select `manifest.json`.
+- `npm install`: Pulls `web-ext` locally so the scripts below work out of the box.
+- `npm start`: Launches Firefox via `web-ext run` with live reload; pass `--firefox` if you need a non-default binary.
+- `npm run lint`: Executes `web-ext lint` to validate the manifest and background script.
+- `npm run build`: Produces a distributable ZIP in `./build/`; upload or share this artifact with testers.
 
 ## Coding Style & Naming Conventions
-- Use 2-space indentation in JavaScript; prefer `const`/`let` over `var`.
-- Keep functions small and async-aware; handle rejected Promises with `try/catch` and `console.error`, matching the existing pattern in `toggleTabPin`.
-- Name commands and actions descriptively (`toggle-pin`, `Pin/Unpin Tab`) and keep manifest keys in lower-case with hyphen separators.
-- Before committing, run `npx prettier --write background.js manifest.json` to preserve compact JSON spacing and consistent JS formatting.
+- Use 2-space indentation in JavaScript and JSON; prefer `const`/`let` over `var`.
+- Keep service-worker code stateless and async-friendly; wrap tab updates in `try/catch` and log errors with `console.error`.
+- Command names stay lowercase-hyphen (`toggle-pin`), action labels use title case (`Pin/Unpin Tab`), and manifest fields remain camel/lowercase per schema.
+- Run `npx prettier --write background.js manifest.json` before committing to maintain formatting parity.
 
 ## Testing Guidelines
-- The project relies on manual verification: load the temporary add-on, trigger `Alt+X`, and confirm the active tab toggles between pinned/unpinned states.
-- When modifying UI elements, also test the toolbar button by clicking the browser action icon.
-- If you introduce automated tests (e.g., via `web-ext lint` or integration harnesses), document the command in this section and ensure all contributors can run it locally.
+- Manual verification is primary: load the temporary add-on, press `Alt+X`, and ensure the active tab toggles between pinned/unpinned states.
+- After UI or icon changes, click the toolbar action to confirm the icon loads and the handler still fires.
+- Run `npm run lint` to catch manifest or API regressions before pushing.
+- If you add automated harnesses (Playwright, Selenium), record the command and dependencies here and ensure they integrate with the existing npm scripts.
 
 ## Commit & Pull Request Guidelines
 - Follow the existing imperative, sentence-case commit style (`Add README.md`, `Tweak formatting on README.md`); keep subjects under ~60 characters.

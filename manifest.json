@@ -1,23 +1,25 @@
 {
-  "manifest_version": 2,
-  "name": "Tab Pin/Unpin with Ctrl+X",
-  "version": "1.0",
-  "description": "Pin or unpin the current tab using Ctrl+X keyboard shortcut",
-  
+  "manifest_version": 3,
+  "name": "Tab Pin/Unpin with Alt+X",
+  "version": "1.1.0",
+  "description": "Pin or unpin the current tab using the Alt+X keyboard shortcut",
   "permissions": [
-    "tabs",
-    "activeTab"
+    "tabs"
   ],
-  
   "background": {
-    "scripts": ["background.js"],
-    "persistent": false
+    "service_worker": "background.js"
   },
-
-  "browser_action": {
-    "default_title": "Pin/Unpin Tab"
+  "action": {
+    "default_title": "Pin/Unpin Tab",
+    "default_icon": {
+      "48": "icons/icon-48.png",
+      "96": "icons/icon-96.png"
+    }
   },
-  
+  "icons": {
+    "48": "icons/icon-48.png",
+    "96": "icons/icon-96.png"
+  },
   "commands": {
     "toggle-pin": {
       "suggested_key": {
