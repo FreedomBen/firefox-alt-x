@@ -6,7 +6,7 @@ A simple Firefox extension that allows you to quickly pin or unpin tabs using a 
 
 - Pin or unpin the active tab with the `Alt+X` keyboard shortcut
 - Click the toolbar button to toggle the pin state
-- Ships as a Manifest V3 WebExtension with a lightweight background service worker
+- Ships as a Manifest V2 WebExtension so it installs without flipping experimental flags
 
 ## Installation
 

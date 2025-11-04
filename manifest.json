@@ -1,5 +1,5 @@
 {
-  "manifest_version": 3,
+  "manifest_version": 2,
   "name": "Tab Pin/Unpin with Alt+X",
   "version": "1.1.0",
   "description": "Pin or unpin the current tab using the Alt+X keyboard shortcut",
@@ -7,9 +7,11 @@
     "tabs"
   ],
   "background": {
-    "service_worker": "background.js"
+    "scripts": [
+      "background.js"
+    ]
   },
-  "action": {
+  "browser_action": {
     "default_title": "Pin/Unpin Tab",
     "default_icon": {
       "48": "icons/icon-48.png",
